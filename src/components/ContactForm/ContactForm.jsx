@@ -1,7 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import styled from 'styled-components';
-import * as yup from 'yup';
 import PropTypes from 'prop-types';
+import * as yup from 'yup';
+
+import styled from 'styled-components';
+
+
 
 const initialValues = {
     name: '',
@@ -9,19 +12,18 @@ const initialValues = {
 };
 
 let schema = yup.object().shape({
-  name: yup.string().required(),
-//   number: yup.number().min(7).max(16).required(),
-  number: yup.string().min(7).max(16).required(),
+  name: yup.string().required('Please enter the name of the contact.'),
+  number: yup.string().min(7).max(16).required('Please enter your phone number.'),
 });
 
 const Input = styled(Field)`
 color: red;
 `;
 
-export const ContactForm = ({ addContact }) => {
+export const ContactForm = ({ addNewContact }) => {
     const handleSubmit = (values, { resetForm }) => {
         // console.log(values);
-        addContact({
+        addNewContact({
             name: values.name,
             number: values.number,
         });
