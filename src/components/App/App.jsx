@@ -13,7 +13,12 @@ export class App extends Component {
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   ],
   filter: ''
-}
+  }
+  
+  onChange = e => {
+    const filter = e.target.value.toLowerCase();
+    this.setState({ filter });
+  };
 
   render() {
     return (
@@ -22,7 +27,10 @@ export class App extends Component {
         <ContactForm />
 
         <h2>Contacts</h2>
-        <Filter />
+        <Filter
+          onChange={this.onChange}
+          value={this.state.filter}
+        />
         <ContactList />
       </div>
     );
