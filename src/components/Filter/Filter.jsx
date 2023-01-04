@@ -1,20 +1,29 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilter } from 'redux/selectors';
+import { setContactFilter } from 'redux/filterSlice';
+
 import {FilterTitle, FilterInput } from './Filter.styled';
 
-export const Filter = ({ onChange, value }) => {
+export const Filter = () => {
+    const filter = useSelector(getFilter);
+    const dispatch = useDispatch();
+    const onChangeFilter = event => dispatch(setContactFilter(event.currentTarget.value));
+
     return (
         <div>
-            <FilterTitle>Find contacts by name</FilterTitle>
+            <FilterTitle>
+                Find contacts by name
+            </FilterTitle>
             <FilterInput
                 type="text"
-                onChange={onChange}
-                value={value}
+                name="filter"
+                id="filter"
+                onChange={onChangeFilter}
+                value={filter}
+                autoComplete="off"
+                placeholder="input field"
             />
         </div>
     )  
 };
  
-Filter.propTypes = {
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-};
