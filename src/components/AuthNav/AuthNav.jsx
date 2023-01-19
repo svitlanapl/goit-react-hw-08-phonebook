@@ -13,7 +13,7 @@ export const AuthNav = () => {
 >
       <NavLink to={"/register"}>
           <Stack
-            spacing={2} direction="row"
+            // spacing={2} direction="row"
           >
           <Button color='secondary' variant="contained">
           Sing Up
