@@ -7,7 +7,6 @@ import {
     RegisterWrapper,
     RegisterLabel,
     RegisterInput,
-    RegisterButton
 } from './RegisterForm.styled';
 
 export const RegisterForm = () => {

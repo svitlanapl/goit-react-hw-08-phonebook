@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { useAuth } from 'hooks/useAuth';
 
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 
 import { UserWrapper, UserName, BtnLogOut } from './UserMenu.styled';
 

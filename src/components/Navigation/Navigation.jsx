@@ -1,6 +1,6 @@
 import { useAuth } from 'hooks/useAuth';
 import Typography from '@mui/material/Typography';
-import { NavList, NavItemLink } from './Navigation.styled';
+import { NavList } from './Navigation.styled';
 import { NavLink } from 'react-router-dom';
 export const Navigation = () => {
   const { isLoggedIn } = useAuth();
