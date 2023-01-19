@@ -1,6 +1,7 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
 
 import { nanoid } from 'nanoid'; 
 
@@ -29,7 +30,7 @@ let schema = yup.object().shape({
 });
 
 export const ContactForm = () => {
-    const contacts = useSelector(getContacts);
+    const contacts = useSelector(selectContacts);
     const dispatch = useDispatch();
 
     const handleSubmit = (values, { resetForm }) => {

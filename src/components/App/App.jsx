@@ -1,34 +1,66 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from 'components/Layout/Layout';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import { refreshUser } from 'redux/auth/operations';
+import { useAuth } from 'hooks/useAuth';
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-import { fetchContacts } from "redux/operations";
-import { getError, getIsLoading } from "redux/selectors";
-
-import { ContactForm } from 'components/ContactForm';
-import { ContactList } from 'components/ContactList';
-import { Filter } from 'components/Filter';
+import { HomePage } from 'pages/Home';
+import { RegisterPage } from 'pages/Register';
+import { LoginPage } from 'pages/Login';
+import { ContactsPage } from 'pages/Contacts';
 
 export const App = () => {
-  const dispatsh = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatsh(fetchContacts());
-  }, [dispatsh]);
+    dispatch(refreshUser());
+  }, [dispatch]);
 
-  return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<LoginPage />}
+            />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute
+              redirectTo="/login"
+              component={<ContactsPage />}
+            />
+          }
+        />
+      </Route>
+    </Routes>
+
   );
+
 };
+
+
 
 
 
