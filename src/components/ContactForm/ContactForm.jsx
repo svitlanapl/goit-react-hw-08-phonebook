@@ -18,11 +18,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
-import {
-    InputForm,
-    InputTitle,
-    Input,
-} from './ContactForm.styled'
+import { InputForm } from './ContactForm.styled'
 
 const initialValues = {
     id:'',
