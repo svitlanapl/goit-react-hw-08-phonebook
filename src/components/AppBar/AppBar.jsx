@@ -3,20 +3,22 @@ import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { useAuth } from 'hooks/useAuth';
 
-import { AppBar, Box, Toolbar } from '@mui/material';
+import { Box, AppBar, Toolbar, Typography } from '@mui/material';
 
-export const BarApp = () => {
+export const AppHeaderBar = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <AppBar position="fixed" >
-      <Box component="main">
+    <Box component="main" >
+      <AppBar position="fixed" >
         <Toolbar >
-          <Navigation />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Navigation />
+          </Typography>
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </Toolbar>
-      </Box>
-    </AppBar> 
+      </AppBar>
+    </Box>
   );
 };
 

@@ -2,9 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFilter } from 'redux/filter/slice';
 import { selectContactFilter } from 'redux/filter/selectors';
 
-
-
-import {FilterTitle, FilterInput } from './Filter.styled';
+import { Typography, TextField, InputAdornment } from '@mui/material';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 export const Filter = () => {
     const filter = useSelector(selectContactFilter);
@@ -13,17 +12,26 @@ export const Filter = () => {
 
     return (
         <div>
-            <FilterTitle>
+            <Typography variant="h6" component="div">
                 Find contacts by name
-            </FilterTitle>
-            <FilterInput
-                type="text"
-                name="filter"
-                id="filter"
+            </Typography>
+            <TextField
                 onChange={onChangeFilter}
                 value={filter}
-                autoComplete="off"
-                placeholder="input field"
+                autoFocus
+                margin='dense'
+                id='filter'
+                label='Search name'
+                type='text'
+                fullWidth
+                variant="outlined"
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <PersonSearchIcon color='primary' />
+                        </InputAdornment>
+                    ),
+                }}   
             />
         </div>
     )  

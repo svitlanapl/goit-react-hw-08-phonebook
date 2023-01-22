@@ -4,14 +4,15 @@ import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {BarApp } from 'components/AppBar/AppBar';
+import { AppHeaderBar } from 'components/AppBar/AppBar';
 
-import { ContainerLayout } from 'components/Layout/Layout.styled';
+import Box from '@mui/material/Box';
+
 
 export const Layout = () => {
   return (
-    <ContainerLayout>
-      <BarApp />
+    <Box>
+      <AppHeaderBar />
       <main>
         <Suspense fallback={null}>
           <Outlet />
@@ -21,6 +22,6 @@ export const Layout = () => {
           reverseOrder={false}
         />
       </main>
-    </ContainerLayout>
+    </Box>
   );
 };

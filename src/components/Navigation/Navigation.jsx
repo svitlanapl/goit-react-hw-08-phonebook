@@ -1,26 +1,33 @@
 import { useAuth } from 'hooks/useAuth';
-import Typography from '@mui/material/Typography';
-import { NavList } from './Navigation.styled';
 import { NavLink } from 'react-router-dom';
+
+import { Typography, Stack } from '@mui/material';
+
 export const Navigation = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-      <nav>
-          <NavList>
-              <NavLink to={"/"}>
-              <Typography
-                  variant='h5'
-                //   sx={{ flexGrow: 1 }}
-              >Home</Typography>
-              </NavLink>
-              {isLoggedIn &&
-                  <NavLink to={'/contacts'}>
-                      <Typography variant='h5'>
-                          Contacts
-                          </Typography>
-                  </NavLink>}
-         </NavList>
-      </nav>
+    <Stack spacing={5} direction="row" >
+      <NavLink to={"/"}>
+        <Typography
+          variant='h5'
+          component='div'
+          
+        >
+          Home
+        </Typography>
+      </NavLink>
+
+      {isLoggedIn &&
+        <NavLink to={'/contacts'}>
+          <Typography
+            variant='h5'
+            component='div'
+          >
+            Contacts
+          </Typography>
+        </NavLink>
+        }
+    </Stack>
   );
 };

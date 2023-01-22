@@ -1,36 +1,25 @@
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-// import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-
-const styles = {
-  container: {
-    display: 'block',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: 500,
-    fontSize: 32,
-    textAlign: 'center',
-  },
-};
+import { Box, Container, Typography } from '@mui/material';
 
 export const HomePage = () => {
   return (
     <Container>
       <Box sx={{ my: 14 }}>
-    <div style={styles.container}>
-      {/* <ContactPhoneIcon color="primary" fontSize="large" /> */}
-      <p style={styles.title}>
-            Welcome 👋
-          </p>
-          <p style={styles.title}>
-        Please, Sign up or Log in to have access to the Phonebook!
-      </p>
-
-        </div>
-        </Box>
-      </Container>
+        <Typography
+          variant="h4"
+          component="div"
+          sx={{ fontWeight: '500', textAlign: 'center' }}
+        >
+          Welcome 👋
+        </Typography>
+        <Typography
+          variant="h4"
+          component="div"
+          sx={{ textAlign: 'center' }}
+        >
+          Please, Sign up or Log in to have access to the Phonebook!
+        </Typography>
+      </Box>
+    </Container>
   );
 };
 

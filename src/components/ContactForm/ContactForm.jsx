@@ -11,11 +11,17 @@ import * as yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+
 import {
     InputForm,
     InputTitle,
     Input,
-    FormButton,
 } from './ContactForm.styled'
 
 const initialValues = {
@@ -56,7 +62,7 @@ export const ContactForm = () => {
                 validationSchema={schema}
                 onSubmit={handleSubmit}>
                 <InputForm>
-                    <InputTitle
+                    {/* <InputTitle
                         htmlFor='name'>
                         Name
                     </InputTitle>
@@ -66,10 +72,26 @@ export const ContactForm = () => {
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required
-                    />
-                    <ErrorMessage name='name' />
+                    /> */}
+                <TextField
+                    autoFocus
+                    margin='dense'
+                    id='name'
+                    label='Name'
+                    type='text'
+                    fullWidth
+                    variant="outlined"
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <AccountCircle color='primary' />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+                <ErrorMessage name='name' />
             
-                    <InputTitle
+                    {/* <InputTitle
                         htmlFor='name'>
                         Number
                     </InputTitle>
@@ -79,13 +101,35 @@ export const ContactForm = () => {
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         required
-                    />
-                    <ErrorMessage name='number' />   
-
-                    <FormButton
-                        type="submit">
+                    /> */}
+                <TextField
+                    autoFocus
+                    margin='dense'
+                    id='number'
+                    label='Phone number'
+                    type='tel'
+                    fullWidth
+                    variant="outlined"
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <ContactPhoneIcon color='primary' />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+                <ErrorMessage name='number' />
+                <DialogActions>
+                    <Button
+                        type="submit"
+                        color='secondary'
+                        variant="contained"
+                        
+                        sx={{ width: 140, margin: 'auto' }}
+                    >
                         Add contact
-                    </FormButton>
+                    </Button>
+                    </DialogActions>
                 </InputForm>
             </Formik>
             <ToastContainer />
@@ -93,4 +137,8 @@ export const ContactForm = () => {
         
     );
 };
- 
+
+
+
+
+

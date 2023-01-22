@@ -18,6 +18,17 @@ code {
 :root {
   --accent: #ffad33;
   --primary: #9ae59a;
-  --main-shadow: -2px -2px 5px #ffffff, 3px 3px 5px rgba(0, 0, 0, 0.1);
-  --inset-shadow: inset -2px -2px 5px #ffffff, inset 3px 3px 5px rgba(0, 0, 0, 0.1);
+  --secondary:rgba(0, 0, 0, 0.85);
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondary);
+}
+
+a:hover,
+:focus,
+:active{
+  color: var(--accent);
+  font-weight: bold;
 }
