@@ -108,82 +108,12 @@
 // ================================================================================================
 
 
-import React from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-
-
-const validationSchema = yup.object({
-  name: yup
-    .string('name your email')
-    .required('name is required'),
-  number: yup
-    .string('Enter your number')
-    .min(7, 'number should be of minimum 7 characters length')
-    .required('number is required'),
-});
-
-export const ContactForm = () => {
-    
-  const formik = useFormik({
-      initialValues: {
-      name: '',
-      number: '',
-      },
-      
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      },
-     
-  });
-
-  return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="name"
-          name="name"
-          label="name"
-          type="text"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          error={formik.touched.name&& Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-        />
-        <TextField
-          fullWidth
-          id="number"
-          name="number"
-          label="number"
-          type="number"
-          value={formik.values.number}
-          onChange={formik.handleChange}
-          error={formik.touched.number && Boolean(formik.errors.number)}
-          helperText={formik.touched.number && formik.errors.number}
-        />
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
-        </Button>
-      </form>
-    </div>
-  );
-};
-
-// ==========================================================================
-
 // import React from 'react';
-// import { useDispatch } from 'react-redux';
 // import { useFormik } from 'formik';
 // import * as yup from 'yup';
+
 // import Button from '@mui/material/Button';
-// import { addContact } from 'redux/contacts/operations';
 // import TextField from '@mui/material/TextField';
-// import { nanoid } from 'nanoid'; 
 
 
 // const validationSchema = yup.object({
@@ -197,12 +127,9 @@ export const ContactForm = () => {
 // });
 
 // export const ContactForm = () => {
-
-//   const dispatch = useDispatch();
     
 //   const formik = useFormik({
 //       initialValues: {
-//       id:'',
 //       name: '',
 //       number: '',
 //       },
@@ -211,18 +138,6 @@ export const ContactForm = () => {
 //     onSubmit: (values) => {
 //       alert(JSON.stringify(values, null, 2));
 //       },
-    
-//     handleSubmit: (values, { resetForm }) => {
-//         const newContact = {
-//             id: 'id' + nanoid(),
-//             name: values.name,
-//             number: values.number,
-//         };
-        
-//         dispatch(addContact(newContact));
-        
-//         resetForm();
-//       }
      
 //   });
 
@@ -258,3 +173,87 @@ export const ContactForm = () => {
 //     </div>
 //   );
 // };
+
+// ==========================================================================
+
+import React from 'react';
+// import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import Button from '@mui/material/Button';
+// import { addContact } from 'redux/contacts/operations';
+import TextField from '@mui/material/TextField';
+import { nanoid } from 'nanoid'; 
+
+
+const validationSchema = yup.object({
+  name: yup
+    .string('name your email')
+    .required('name is required'),
+  number: yup
+    .string('Enter your number')
+    .min(7, 'number should be of minimum 7 characters length')
+    .required('number is required'),
+});
+
+export const ContactForm = ({ newContact }) => {
+
+  // const dispatch = useDispatch();
+    
+  const formik = useFormik({
+    initialValues: {
+      id:'',
+      name: '',
+      number: '',
+      },
+      
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+      },
+
+    handleSubmit:(values, { resetForm }) => {
+         newContact({
+            id: 'id'+nanoid(),
+            name: values.name.trim(),
+            number: values.number.trim(),
+        });
+        // dispatch(addContact(newContact));
+    
+        resetForm();
+    }
+
+    });
+
+  return (
+    <div>
+      <form onSubmit={formik.handleSubmit}>
+        <TextField
+          fullWidth
+          id="name"
+          name="name"
+          label="name"
+          type="text"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          error={formik.touched.name&& Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+        />
+        <TextField
+          fullWidth
+          id="number"
+          name="number"
+          label="number"
+          type="tel"
+          value={formik.values.number}
+          onChange={formik.handleChange}
+          error={formik.touched.number && Boolean(formik.errors.number)}
+          helperText={formik.touched.number && formik.errors.number}
+        />
+        <Button color="secondary" variant="contained" fullWidth type="submit" sx={{ width: 140 }}>
+           Add contact
+        </Button>
+      </form>
+    </div>
+  );
+};
