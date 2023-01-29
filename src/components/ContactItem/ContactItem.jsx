@@ -31,20 +31,15 @@ export const ContactItem = ({ id, name, number }) => {
       >
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
-      <Typography variant="h6" component="div">
-              {name}:{number}
-              <Button
-        onClick={handleDelete}
-        name={id}
-        type="button"
-        // sx={{ ml:'auto'}}
-      >
-        <DeleteIcon color='secondary' />
-      </Button>
-      </Typography>
+            <Typography variant="h6" component="div">
+              {name}: {number}
+              <Button onClick={handleDelete} name={id} type="button" >
+                <DeleteIcon color='secondary' />
+              </Button>
+            </Typography>
           </Grid>
-          </Grid>
-        </StyledPaper>
+        </Grid>
+      </StyledPaper>
     </Box>
   );
 };

@@ -4,10 +4,10 @@ import { LoginForm } from 'components/LoginForm/LoginForm';
 
 export const LoginPage = () => {
     return (
-  <Container>
-<Box sx={{ my: 14 }}>
-    <LoginForm />
-  </Box>
-  </Container>
-  )
+      <Container>
+        <Box sx={{ my: 14 }}>
+          <LoginForm />
+        </Box>
+      </Container>
+    )
 };

@@ -5,13 +5,10 @@ import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 
 export const RegisterPage = () => {
   return (
-  <Container>
-<Box sx={{ my: 14 }}>
-    <RegisterForm />
-  </Box>
-  </Container>
+    <Container>
+      <Box sx={{ my: 14 }}>
+        <RegisterForm />
+      </Box>
+    </Container>
   )
-
-  
-  
 };

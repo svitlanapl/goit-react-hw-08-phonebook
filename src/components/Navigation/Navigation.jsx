@@ -8,7 +8,7 @@ export const Navigation = () => {
 
   return (
     <Stack spacing={5} direction="row" >
-      <NavLink to={"/"}>
+      <NavLink to="/">
         <Typography
           variant='h5'
           component='div'
@@ -19,7 +19,7 @@ export const Navigation = () => {
       </NavLink>
 
       {isLoggedIn &&
-        <NavLink to={'/contacts'}>
+        <NavLink to='/contacts'>
           <Typography
             variant='h5'
             component='div'
